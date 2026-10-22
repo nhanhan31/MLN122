@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CQ5 – Phần kiến thức (trình chiếu)</title>
+<style>
+  :root{--bg:#0b1220;--panel:#16213a;--panel2:#1f2d4d;--line:#33466f;--text:#f8fafc;--muted:#a5b4cf;--gold:#fbbf24;--ok:#22c55e;--bad:#f87171;--info:#38bdf8}
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;overflow:hidden}
+  body{background:radial-gradient(1400px 700px at 85% -10%,#1d3b6b 0%,var(--bg) 62%);color:var(--text);
+    font-family:"Segoe UI",Roboto,Arial,sans-serif;font-size:clamp(18px,1.75vw,27px);line-height:1.45;display:flex;flex-direction:column}
+  button{font:inherit;color:inherit;border:0;cursor:pointer;border-radius:12px}
+  #top{display:flex;align-items:center;gap:12px;padding:8px 22px;background:#070d1acc;border-bottom:1px solid var(--line)}
+  .brand{font-weight:800;color:var(--gold);white-space:nowrap}
+  #secs{display:flex;gap:6px;flex:1;justify-content:center;flex-wrap:wrap}
+  .chip{padding:2px 12px;border-radius:999px;border:1px solid var(--line);font-size:.62em;color:var(--muted);white-space:nowrap;cursor:pointer;background:transparent}
+  .chip.now{background:var(--gold);color:#1b1300;border-color:var(--gold);font-weight:700}
+  .chip.done{border-color:#22c55e88;color:#86efac}
+  .tbtn{background:var(--panel2);border:1px solid var(--line);padding:3px 12px;font-size:.65em}
+  #prog{height:4px;background:var(--line)} #prog i{display:block;height:100%;width:0;background:var(--gold);transition:width .3s}
+  a.tbtn{color:var(--text);text-decoration:none;display:inline-block;border-radius:12px}
+  a.tbtn:hover{border-color:var(--gold)}
+  #stage{flex:1;min-height:0;overflow:auto;padding:22px clamp(20px,4vw,70px)}
+  .slide{max-width:1500px;margin:0 auto;animation:in .35s both}
+  @keyframes in{from{opacity:0;transform:translateY(12px)}}
+  h1{font-size:2.5em;margin:0 0 8px;line-height:1.12}
+  h2{font-size:1.65em;margin:0 0 10px;line-height:1.2}
+  h3{margin:0 0 4px;color:var(--gold);font-size:1.05em}
+  .tag{display:inline-block;background:#fbbf2422;color:var(--gold);border:1px solid #fbbf2466;padding:1px 14px;border-radius:999px;font-size:.6em;font-weight:700;margin-bottom:6px}
+  .lead{font-size:1.08em;color:#e2eafa;margin:6px 0 14px}
+  .muted{color:var(--muted)} .gold{color:var(--gold)}
+  .src{font-size:.58em;color:var(--muted);margin-top:12px}
+  .grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr))}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px 18px}
+  .card p{margin:0;font-size:.88em;color:#e5edfb}
+  .card.hl{border-color:var(--gold);background:linear-gradient(135deg,#3a2f0a,#16213a)}
+  .quote{border-left:6px solid var(--gold);background:var(--panel2);padding:12px 20px;border-radius:12px;margin:10px 0}
+  .punch{margin-top:14px;padding:12px 20px;border-radius:14px;background:linear-gradient(90deg,#0c4a6e,#16213a);border:1px solid var(--info);font-style:italic}
+  ul.b{margin:6px 0;padding-left:1.2em} ul.b li{margin:6px 0}
+  table{border-collapse:collapse;width:100%;font-size:.85em}
+  th,td{border:1px solid var(--line);padding:8px 14px;text-align:left;vertical-align:top}
+  th{background:var(--panel2);color:var(--gold)} td:first-child{font-weight:700;white-space:nowrap}
+  .flow{display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:center;margin:12px 0}
+  .flow .n{background:var(--panel2);border:2px solid var(--line);border-radius:14px;padding:8px 14px;text-align:center;font-size:.85em}
+  .flow .a{color:var(--gold);font-size:1.3em}
+  .bar{display:grid;grid-template-columns:minmax(150px,300px) 1fr 70px;gap:10px;align-items:center;margin:8px 0;font-size:.85em}
+  .bar div{height:22px;border-radius:11px;background:#0b1220;overflow:hidden} .bar i{display:block;height:100%;background:var(--info)}
+  .tl{display:flex;gap:0;margin:20px 0}
+  .tl>div{flex:1;text-align:center;padding:14px 10px;border-top:6px solid var(--gold);background:var(--panel);margin-right:6px;border-radius:0 0 14px 14px}
+  .tl b{display:block;color:var(--gold)}
+  .cover{text-align:center;padding-top:6vh}
+  .cover h1{font-size:2.9em}
+  .frag{display:none} .frag.show{display:block;animation:in .35s both}
+  .grid>.frag.show,.flow>.frag.show{display:block}
+  tr.frag.show{display:table-row} li.frag.show{display:list-item}
+  .flow>.frag.show.a,.flow>.frag.show.n{display:block}
+  #nav{display:flex;align-items:center;gap:14px;padding:8px 22px;background:#070d1acc;border-top:1px solid var(--line)}
+  #nav .info{flex:1;text-align:center;color:var(--muted);font-size:.65em}
+  .nbtn{background:var(--panel2);border:1px solid var(--line);padding:8px 24px;font-weight:700}
+  .nbtn.go{background:var(--gold);color:#1b1300;border-color:var(--gold)} .nbtn:disabled{opacity:.4}
+  #outline{position:fixed;inset:0;background:#020617ee;z-index:20;overflow:auto;padding:30px}
+  #outline .in{max-width:900px;margin:0 auto}
+  #outline button{display:block;width:100%;text-align:left;background:var(--panel);border:1px solid var(--line);padding:6px 14px;margin:4px 0;font-size:.8em}
+  #outline button:hover,#outline button.cur{border-color:var(--gold)}
+  .hidden{display:none!important}
+</style>
+</head>
+<body>
+  <div id="top">
+    <span class="brand">📚 CQ5 · KIẾN THỨC</span>
+    <div id="secs"></div>
+    <button class="tbtn" id="btnOut" title="Mục lục (O)">☰ Mục lục</button>
+    <a class="tbtn" href="./" title="Chuyển sang trò chơi tương tác">🎮 Phần tương tác</a>
+    <button class="tbtn" id="btnFs" title="Toàn màn hình (F)">⛶</button>
+  </div>
+  <div id="prog"><i></i></div>
+  <div id="stage"></div>
+  <div id="nav">
+    <button class="nbtn" id="btnPrev">◀ Lùi</button>
+    <div class="info" id="info"></div>
+    <button class="nbtn go" id="btnNext">Tiếp ▶</button>
+  </div>
+  <div id="outline" class="hidden"><div class="in"><button id="outClose" style="text-align:center;font-weight:700">✕ Đóng (Esc)</button><div id="outList"></div></div></div>
+  <script src="kienthuc-data.js"></script>
+  <script src="kienthuc-data2.js"></script>
+  <script src="kienthuc-data3.js"></script>
+  <script src="kienthuc.js"></script>
+</body>
+</html>
