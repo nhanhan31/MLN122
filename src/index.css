@@ -40,10 +40,22 @@ body {
   font-family: "Segoe UI", Roboto, system-ui, Arial, sans-serif;
   font-size: clamp(16px, 1.55vw, 24px);
   line-height: 1.45;
+  -webkit-text-size-adjust: 100%;
+  overflow-wrap: anywhere;
 }
 #root,
 .app {
   height: 100%;
+}
+@supports (height: 100dvh) {
+  .app {
+    height: 100dvh;
+  }
+}
+img,
+svg,
+table {
+  max-width: 100%;
 }
 .app {
   display: flex;
@@ -671,6 +683,7 @@ table.rep td.k {
 }
 .pod {
   width: min(19%, 190px);
+  height: var(--h);
   border-radius: 14px 14px 0 0;
   text-align: center;
   padding: 12px 6px;
@@ -799,4 +812,171 @@ table.rep td.k {
 }
 .lev {
   color: #7c3aed;
+}
+
+/* ============ Responsive ============ */
+.tbl-wrap {
+  overflow-x: auto;
+}
+
+@media (max-width: 900px) {
+  .topbar {
+    flex-wrap: wrap;
+    padding: 8px 14px;
+    gap: 8px;
+  }
+  .crumb {
+    order: 3;
+    flex-basis: 100%;
+  }
+  .body {
+    padding: 14px;
+    gap: 14px;
+  }
+  .card {
+    padding: 18px 18px;
+  }
+  h1 {
+    font-size: 1.9em;
+  }
+  .podium {
+    gap: 8px;
+    min-height: 0;
+  }
+  .pod {
+    height: calc(var(--h) * 0.7);
+    width: min(22%, 190px);
+  }
+  table.rep {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 640px) {
+  body {
+    font-size: 16px;
+  }
+  .brand {
+    font-size: 0.9em;
+  }
+  .topbar .tbtn {
+    padding: 6px 10px;
+    min-height: 36px;
+  }
+  .body {
+    padding: 10px;
+  }
+  .card {
+    padding: 14px;
+    border-radius: 14px;
+  }
+  h1 {
+    font-size: 1.55em;
+  }
+  h2 {
+    font-size: 1.25em;
+  }
+  .ban {
+    font-size: 3.5em;
+  }
+  .round-intro {
+    padding: 3vh 10px;
+  }
+  .btn,
+  .seg button,
+  .ab,
+  .jk,
+  .bonus button,
+  .trline button {
+    min-height: 40px;
+  }
+  .btn.big {
+    padding: 12px 22px;
+    width: 100%;
+    text-align: center;
+  }
+  .acts {
+    gap: 8px;
+  }
+  .acts .btn {
+    flex: 1 1 auto;
+    text-align: center;
+  }
+  .push {
+    margin-left: 0;
+  }
+  .tin {
+    grid-template-columns: 1fr;
+  }
+  .opt {
+    gap: 10px;
+    padding: 9px 12px;
+    flex-wrap: wrap;
+  }
+  .votes {
+    margin-left: 0;
+    flex-basis: 100%;
+    justify-content: flex-start;
+  }
+  .prow {
+    flex-wrap: wrap;
+  }
+  .prow .nm {
+    flex-basis: 100%;
+  }
+  .choices {
+    flex-wrap: wrap;
+  }
+  .st {
+    width: auto;
+    margin-left: auto;
+  }
+  .trline .nm {
+    min-width: 0;
+    flex-basis: 100%;
+  }
+  .simchain {
+    font-size: 0.72em;
+  }
+  .trow {
+    flex-wrap: wrap;
+    padding: 8px 10px;
+  }
+  .co.sub {
+    margin-left: 10px;
+  }
+  .podium {
+    gap: 5px;
+    margin: 16px 0;
+  }
+  .pod {
+    padding: 8px 3px;
+    font-size: 0.78em;
+    width: 24%;
+    height: calc(var(--h) * 0.6);
+  }
+  .pod .pts {
+    font-size: 1.5em;
+  }
+  .evt {
+    padding: 12px 14px;
+  }
+}
+
+@media (max-width: 380px) {
+  .tbtn {
+    font-size: 0.6em;
+  }
+  .seg button {
+    padding: 6px 12px;
+  }
+}
+
+@media (hover: none) {
+  .btn:hover:not(:disabled),
+  .tbtn:hover {
+    transform: none;
+  }
 }

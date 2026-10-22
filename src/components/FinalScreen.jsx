@@ -23,7 +23,7 @@ export default function FinalScreen({ G, actions }) {
           <div
             key={r.i}
             className="pod"
-            style={{ "--c": r.t.color, height: `${HEIGHTS[i]}px`, animationDelay: `${(ranked.length - i) * 0.2}s` }}
+            style={{ "--c": r.t.color, "--h": `${HEIGHTS[i]}px`, animationDelay: `${(ranked.length - i) * 0.2}s` }}
           >
             <div>{MEDALS[i] || i + 1}</div>
             <div>{r.t.name}</div>

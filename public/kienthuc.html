@@ -64,6 +64,27 @@
   #outline button{display:block;width:100%;text-align:left;background:var(--panel);border:1px solid var(--line);padding:6px 14px;margin:4px 0;font-size:.8em}
   #outline button:hover,#outline button.cur{border-color:var(--gold)}
   .hidden{display:none!important}
+  @supports (height:100dvh){html,body{height:100dvh}}
+  @media (max-width:900px){
+    body{font-size:clamp(16px,2.4vw,20px)}
+    #top{flex-wrap:wrap;padding:8px 14px;gap:8px}
+    #secs{order:3;flex-basis:100%;justify-content:flex-start;overflow-x:auto;flex-wrap:nowrap;padding-bottom:4px}
+    #stage{padding:16px 16px}
+    h1{font-size:2em} .cover h1{font-size:2.1em} h2{font-size:1.4em}
+    .tl{flex-direction:column;gap:8px} .tl>div{margin-right:0}
+    table{display:block;overflow-x:auto}
+    td:first-child{white-space:normal}
+    #nav{padding:8px 14px;gap:8px}
+  }
+  @media (max-width:560px){
+    body{font-size:16px}
+    .brand{font-size:.9em}
+    .bar{grid-template-columns:1fr 60px;gap:4px 8px} .bar>span:first-child{grid-column:1/-1}
+    .nbtn{padding:10px 14px}
+    #nav .info{font-size:.55em}
+    #outline{padding:14px}
+    .card{padding:12px 14px}
+  }
 </style>
 </head>
 <body>
