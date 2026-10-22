@@ -6,9 +6,10 @@ export default function TopBar({ crumb, sound, onToggleSound, onToggleEdit, onFu
       <button className="tbtn" title="Âm thanh" onClick={onToggleSound}>
         {sound ? "🔊" : "🔇"}
       </button>
-      <a className="tbtn" href="kienthuc.html" title="Mở lại phần kiến thức">
+      <a className="tbtn" style={{ borderRadius: "12px" }} href="kienthuc.html" title="Mở lại phần kiến thức">
         📚 Phần kiến thức
       </a>
+      
       <button className="tbtn" title="Chỉnh điểm thủ công" onClick={onToggleEdit}>
         ✎ Chỉnh điểm
       </button>
